@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Field Shift</title>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF6EE;--sf:#fff;--ink:#1D3524;--mu:#62745F;--ln:#E5E0D0;--g:#2F6B3A;--gd:#1F4A2A;--o:#D9822B;--bl:#2457B5;--blb:#E6EEFB;--am:#B7791F;--amb:#FBF1D9;--hero:#EEF3E4;--fg:#2F6B3A;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101A13;--sf:#17271C;--ink:#E7F1E4;--mu:#9DB5A3;--ln:#2A4231;--g:#6FBF7F;--gd:#9BDCA8;--blb:#16264A;--bl:#8DB4FF;--am:#F0C468;--amb:#3A2E12;--hero:#17271C;--fg:#1B3A24;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101A13;--sf:#17271C;--ink:#E7F1E4;--mu:#9DB5A3;--ln:#2A4231;--g:#6FBF7F;--gd:#9BDCA8;--blb:#16264A;--bl:#8DB4FF;--am:#F0C468;--amb:#3A2E12;--hero:#17271C;--fg:#1B3A24;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.7 "Readex Pro",Tahoma,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sf);z-index:10}
+:focus-visible{outline:3px solid var(--bl);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--sf);border-bottom:1px solid var(--ln)}
+.bar{max-width:1120px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px;color:var(--gd);text-decoration:none}
+nav{display:flex;gap:18px;flex:1;justify-content:center}nav a{color:var(--mu);text-decoration:none;font-size:15px;white-space:nowrap}nav a:hover{color:var(--g)}
+@media(max-width:860px){nav{display:none}.bar{justify-content:space-between}}
+.btn{font:600 16px/1 "Readex Pro",sans-serif;border:0;border-radius:12px;padding:14px 22px;cursor:pointer;background:var(--o);color:#fff;text-decoration:none;display:inline-block}
+.btn.sm{padding:10px 16px;font-size:14px}.btn.gh{background:transparent;color:var(--gd);border:1.5px solid var(--ln)}.btn.gr{background:var(--g);color:#fff}.btn.lg{padding:17px 30px;font-size:18px}
+main{max-width:1120px;margin:auto;padding:0 20px 56px}.view{display:none}.view.on{display:block}
+.hero{margin-top:20px;background:var(--hero);border-radius:28px;padding:56px 24px;text-align:center;position:relative;overflow:hidden}
+.hero>*{position:relative}.hero .lf{position:absolute;opacity:.9}
+.badge{display:inline-block;background:var(--sf);border:1px solid var(--ln);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--g);margin-bottom:16px}
+h1{font-size:clamp(30px,6vw,54px);line-height:1.3;margin:0 0 14px;color:var(--gd)}
+h2{font-size:26px;margin:44px 0 6px;color:var(--gd);text-align:center}h2+.hint{text-align:center;margin:0 0 20px;color:var(--mu)}
+h2.l{text-align:start}h3{margin:0 0 6px;font-size:18px}
+.sub{max-width:640px;margin:0 auto 26px;color:var(--mu);font-size:clamp(16px,2.4vw,19px)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:22px}.card p{margin:0;color:var(--mu);font-size:15px}
+.ico{width:46px;height:46px;border-radius:14px;background:var(--hero);display:grid;place-items:center;color:var(--g);margin-bottom:8px}
+.how{display:grid;gap:14px;max-width:620px;margin:auto}.how .card{display:flex;gap:16px;align-items:flex-start}
+.n{flex:none;width:38px;height:38px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:700}
+.cta{margin-top:48px;background:var(--hero);border-radius:24px;padding:40px 20px;text-align:center}
+.stp{display:flex;gap:8px;margin:24px 0 4px}.stp span{flex:1;text-align:center;font-size:13px;color:var(--mu)}.stp span::before{content:"";display:block;height:6px;border-radius:3px;background:var(--ln);margin-bottom:6px}.stp .on{color:var(--g);font-weight:600}.stp .on::before{background:var(--g)}
+label.f{display:block;font-weight:600;margin:20px 0 8px}
+input[type=search],select{width:100%;font:inherit;padding:13px 16px;border-radius:12px;border:1.5px solid var(--ln);background:var(--sf);color:var(--ink)}
+.map{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--ln);margin-top:12px;cursor:crosshair;touch-action:manipulation}.map svg{display:block;width:100%;height:auto}
+.pin{position:absolute;width:34px;height:34px;transform:translate(-50%,-100%);pointer-events:none;transition:left .25s,top .25s}
+.chip{position:absolute;top:10px;inset-inline-start:10px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;border-radius:8px;padding:3px 10px;direction:ltr}
+.coord{font-size:14px;color:var(--mu);margin-top:8px;direction:ltr;text-align:start}
+.checks{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.checks label{display:flex;gap:10px;align-items:center;background:var(--sf);border:1.5px solid var(--ln);border-radius:12px;padding:12px 14px;cursor:pointer}.checks input{width:20px;height:20px;accent-color:var(--g)}
+.acts{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.proc{max-width:680px;margin:30px auto;text-align:center}
+.pb{height:10px;border-radius:5px;background:var(--ln);overflow:hidden;margin:14px 0 22px}.pb i{display:block;height:100%;width:0;background:var(--g);transition:width .3s}
+.pl{display:grid;gap:10px;text-align:start}.pl .card{padding:14px 18px;display:flex;justify-content:space-between;opacity:.5}.pl .card.d{opacity:1;border-color:var(--g)}.pl .card.r{opacity:1;border-color:var(--bl)}
+.sum{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:18px}.sum b{display:block;font-size:17px}.sum small{color:var(--mu)}
+.dash{display:grid;gap:16px;grid-template-columns:minmax(260px,340px) 1fr;margin-top:16px}@media(max-width:760px){.dash{grid-template-columns:1fr}}
+.gauge{text-align:center}.gauge svg{width:200px;max-width:100%}.gauge p{margin:0;font-weight:600}
+.alert{border-radius:16px;padding:16px 20px;margin-bottom:12px;border-inline-start:6px solid}.alert.y{background:var(--amb);border-color:var(--am)}.alert.b{background:var(--blb);border-color:var(--bl)}
+.alert h3{font-size:17px;margin:0}.alert p{margin:0;font-size:15px}.alert small{font-weight:600;opacity:.85}
+.sl{display:flex;justify-content:space-between;margin:14px 0 4px;font-size:14px}.sl b{direction:ltr}input[type=range]{width:100%;accent-color:var(--g)}
+.tag{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:3px 12px;background:var(--ln);color:var(--mu)}
+.rec{border:2px solid var(--g)}.rec .tag{background:var(--g);color:#fff}
+.path{font-size:20px;font-weight:700;margin:14px 0 10px}.m{display:flex;justify-content:space-between;font-size:14px;border-top:1px solid var(--ln);padding:8px 0;color:var(--mu)}.m b{color:var(--ink);direction:ltr}
+.big{font-size:34px;font-weight:700;direction:ltr;color:var(--g)}.neg{color:var(--bl)}
+.help{margin-top:30px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+.note{font-size:13px;color:var(--mu);margin-top:14px}
+.src{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:36px;color:var(--mu);font-size:14px;align-items:center}.src b{border:1px solid var(--ln);background:var(--sf);border-radius:999px;padding:6px 14px;color:var(--bl);font-weight:600}
+footer{background:var(--fg);color:#E7F1E4;margin-top:20px;overflow:hidden}
+.fin{max-width:1120px;margin:auto;padding:36px 20px 20px;display:grid;gap:24px;grid-template-columns:2fr 1fr 1fr}@media(max-width:700px){.fin{grid-template-columns:1fr}}
+footer h4{margin:0 0 10px;font-size:15px}footer a{display:block;color:#C9DCC9;text-decoration:none;font-size:14px;padding:2px 0}footer p{font-size:14px;color:#C9DCC9;margin:6px 0}
+.mq{white-space:nowrap;font:700 34px/1.3 "Readex Pro",sans-serif;color:rgba(255,255,255,.12);padding:6px 0}.mq span{display:inline-block;animation:mv 30s linear infinite}@keyframes mv{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.mq span{animation:none}}
+.team{display:flex;gap:10px;align-items:center;padding:0 20px 20px;max-width:1120px;margin:auto;font-size:14px;color:#C9DCC9}.team i{width:36px;height:36px;border:1.5px dashed #6C8F72;border-radius:10px;display:grid;place-items:center;font:10px sans-serif;font-style:normal}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="brand" href="#home"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="var(--hero)"/><path d="M12 28c0-9 6-15 17-16-1 10-7 16-17 16z" fill="var(--g)"/><path d="M12 28c5-5 9-9 13-12" stroke="var(--hero)" stroke-width="2" fill="none"/><ellipse cx="20" cy="20" rx="18" ry="7" transform="rotate(-25 20 20)" fill="none" stroke="var(--bl)" stroke-width="1.8"/></svg>Field Shift</a>
+<nav><a href="#home" data-i="n1"></a><a href="#home" data-i="n2"></a><a href="#data" data-i="n3"></a><a href="#data" data-i="n4"></a></nav>
+<div style="display:flex;gap:8px"><a class="btn sm" href="#form" data-i="cta2"></a><button class="btn sm gh" id="lang" type="button">EN</button></div>
+</div></header>
+<main>
+
+<section class="view on" id="home">
+<div class="hero">
+<svg class="lf" style="inset-inline-start:-10px;bottom:-10px" width="130" height="150" viewBox="0 0 60 70" aria-hidden="true"><path d="M5 65C5 30 25 8 55 5 55 35 35 62 5 65z" fill="var(--g)" opacity=".8"/><path d="M5 65C20 45 32 30 45 16" stroke="var(--hero)" stroke-width="2" fill="none"/></svg>
+<svg class="lf" style="inset-inline-end:30px;top:24px" width="60" height="60" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="18" ry="7" transform="rotate(-35 20 20)" fill="none" stroke="var(--bl)" stroke-width="1.6" stroke-dasharray="3 4"/><circle cx="31" cy="9" r="4" fill="var(--bl)"/></svg>
+<span class="badge" data-i="badge"></span>
+<h1 data-i="h1"></h1><p class="sub" data-i="sub"></p>
+<a class="btn lg" href="#form" data-i="cta"></a>
+</div>
+<h2 data-i="fh"></h2><p class="hint" data-i="fhint"></p>
+<div class="grid" id="feats"></div>
+<h2 data-i="hh"></h2><p class="hint" data-i="hhint"></p>
+<div class="how" id="how"></div>
+<div class="cta"><h2 style="margin:0 0 14px" data-i="end"></h2><a class="btn lg" href="#form" data-i="cta3"></a></div>
+</section>
+
+<section class="view" id="form">
+<div class="stp"><span class="on" data-i="s1"></span><span data-i="s2"></span><span data-i="s3"></span><span data-i="s4"></span></div>
+<h2 class="l" data-i="lh"></h2><p class="hint" style="text-align:start" data-i="lhint"></p>
+<label class="f" for="q" data-i="loc"></label><input type="search" id="q" data-ip="ph">
+<div class="map" id="map" role="img" aria-label="map"><svg viewBox="0 0 800 420" aria-hidden="true"><rect width="800" height="420" fill="#8DAF72"/><path d="M0 300C200 250 360 330 800 270V420H0Z" fill="#6E9A5A"/><path d="M560 0C540 120 600 220 520 420" stroke="#4F86C6" stroke-width="22" fill="none" opacity=".8"/><g id="circ"></g></svg>
+<span class="chip">Landsat-9 · NDVI 0.74</span>
+<svg class="pin" id="pin" viewBox="0 0 34 34" style="left:40%;top:50%"><path d="M17 33C9 22 5 17 5 12a12 12 0 0124 0c0 5-4 10-12 21z" fill="#C0392B"/><circle cx="17" cy="12" r="4.5" fill="#fff"/></svg></div>
+<div class="coord" id="coord"></div>
+<label class="f" for="crop" data-i="crop"></label><select id="crop"></select>
+<label class="f" data-i="prio"></label><div class="checks" id="prios"></div>
+<div class="acts"><a class="btn gh" href="#home" data-i="back"></a><button class="btn" id="go" type="button" data-i="next"></button></div>
+</section>
+
+<section class="view" id="proc">
+<div class="proc"><div class="ico" style="margin:auto;width:64px;height:64px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+<h2 style="margin:12px 0 4px" data-i="ph2"></h2><p class="hint" data-i="phint"></p>
+<div style="display:flex;justify-content:space-between;font-size:14px"><span data-i="prog"></span><b id="pp" style="direction:ltr">0%</b></div>
+<div class="pb"><i id="pbar"></i></div><div class="pl" id="pl"></div></div>
+</section>
+
+<section class="view" id="dashboard">
+<h2 class="l" data-i="dh"></h2><p class="hint" style="text-align:start" data-i="dhint"></p>
+<div class="sum" id="sum"></div>
+<div class="dash">
+<div class="card gauge"><h3 data-i="health"></h3>
+<svg viewBox="0 0 200 200" role="img" aria-label="health"><circle cx="100" cy="100" r="82" fill="none" stroke="var(--ln)" stroke-width="18"/><circle id="arc" cx="100" cy="100" r="82" fill="none" stroke="var(--g)" stroke-width="18" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="0 600"/><text x="100" y="114" text-anchor="middle" id="pct" font-size="44" font-weight="700" fill="currentColor">0%</text></svg><p id="stat"></p></div>
+<div><h3 style="margin-bottom:12px" data-i="al"></h3>
+<div class="alert y"><small>NASA POWER</small><h3 data-i="a1t"></h3><p data-i="a1p"></p></div>
+<div class="alert b"><small>SMAP</small><h3 data-i="a2t"></h3><p data-i="a2p"></p></div></div></div>
+<div class="grid" style="margin-top:16px">
+<div class="card"><h3 data-i="scn"></h3><p data-i="scnp"></p>
+<div class="sl"><span data-i="tmp"></span><b id="tv">+0°C</b></div><input type="range" id="tr" min="0" max="5" step="1" value="0" aria-label="temp">
+<div class="sl"><span data-i="rain"></span><b id="rv">0%</b></div><input type="range" id="rr" min="-30" max="30" step="10" value="0" aria-label="rain"></div>
+<div class="card"><h3 data-i="trend"></h3><svg viewBox="0 0 300 120" width="100%" role="img" aria-label="trend"><path d="M0 70C40 20 80 20 120 60S200 110 240 50 290 40 300 60" fill="none" stroke="var(--bl)" stroke-width="3"/><path d="M0 70C40 20 80 20 120 60S200 110 240 50 290 40 300 60V120H0z" fill="var(--blb)" opacity=".6"/></svg></div></div>
+<h2 class="l" data-i="sh"></h2><div class="grid" id="strats"></div>
+<div class="help card"><div><h3 data-i="exp"></h3><p data-i="expp"></p></div><div class="acts" style="margin:0"><a class="btn gr" href="#detail" data-i="more"></a></div></div>
+<p class="note" data-i="demo"></p>
+<div class="src"><span data-i="srcl"></span><b>SMAP</b><b>GPM</b><b>NASA POWER</b></div>
+<div class="acts"><a class="btn gh" href="#form" data-i="again"></a></div>
+</section>
+
+<section class="view" id="detail">
+<h2 class="l" data-i="dth"></h2><p class="hint" style="text-align:start" data-i="dtp"></p>
+<div class="grid" id="dmet"></div>
+<h2 class="l" data-i="why"></h2><div class="grid" id="whys"></div>
+<div class="acts"><a class="btn gh" href="#dashboard" data-i="back"></a></div>
+</section>
+
+<section class="view" id="data">
+<h2 class="l" data-i="mh"></h2><p class="hint" style="text-align:start" data-i="mp"></p>
+<div class="card"><h3 data-i="mod"></h3><p data-i="modp"></p>
+<div class="m"><span data-i="w1"></span><b>40%</b></div><div class="m"><span data-i="w2"></span><b>30%</b></div><div class="m"><span data-i="w3"></span><b>30%</b></div></div>
+<h2 class="l" data-i="sr"></h2>
+<div class="grid"><div class="card"><h3>Landsat &amp; Sentinel</h3><p data-i="sa"></p></div><div class="card"><h3>NASA POWER</h3><p data-i="sb"></p></div><div class="card"><h3>NASA SMAP</h3><p data-i="sc"></p></div></div>
+<div class="alert y" style="margin-top:20px"><h3 data-i="lim"></h3><p data-i="limp"></p></div>
+<div class="acts"><a class="btn" href="#form" data-i="cta"></a></div>
+</section>
+</main>
+
+<footer><div class="fin">
+<div><b style="font-size:20px">Field Shift</b><p data-i="fdesc"></p></div>
+<div><h4 data-i="fl"></h4><a href="#home" data-i="n1"></a><a href="#form" data-i="cta2"></a><a href="#data" data-i="n3"></a></div>
+<div><h4 data-i="fs"></h4><a>NASA Earth Science Data</a><a>SMAP L3 Soil Moisture</a><a>NASA POWER</a></div></div>
+<div class="team"><i>LOGO</i><span data-i="team"></span></div>
+<div class="mq" aria-hidden="true"><span>Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • </span></div></footer>
+
+<script>
+var T={ar:{n1:"الرئيسية",n2:"كيف تعمل المنصة",n3:"مصادر البيانات",n4:"البيانات والمنهجية",cta2:"ابدأ التحليل الآن",badge:"بيانات ناسا ‏SMAP و‏GPM و‏NASA POWER",h1:"افهم أرضك.. وخد قرارك الزراعي بثقة",sub:"Field Shift بتحوّل بيانات ناسا عن المناخ والتربة والأمطار لقرارات بسيطة تحمي محصولك وتوفر مياهك.",cta:"ابدأ تحليل مزرعتك الآن",cta3:"ابدأ تحليل مزرعتك الآن",
+fh:"قرارات زراعية أذكى",fhint:"ابدأ بيانات أوضح",hh:"كيف تعمل المنصة",hhint:"ثلاث خطوات بسيطة من موقعك لقرارك",end:"ابدأ فهم أرضك بشكل أفضل",
+f:[["بيانات موثوقة من ناسا","قراءات الأقمار الصناعية للحرارة والأمطار ورطوبة التربة من مصادرها الأصلية."],["توفير المياه","اعرف متى تروي وكم تحتاج الأرض فعلًا بدل الري بالتخمين."],["اختيار أفضل دورة زراعية","قارن دورتك الحالية بالدورة الموصى بها حسب أرضك ومناخك."]],
+h:[["حدد أرضك","اختار موقع مزرعتك على الخريطة وأدخل نوع المحصول."],["حلل بياناتها","بنجمع بيانات الأقمار الصناعية والمناخ لموقعك."],["اكتشف التوصيات المناسبة","هتشوف حالة المحصول وتنبيهات مبكرة وأفضل دورة زراعية."]],
+s1:"الموقع",s2:"المحصول",s3:"الأولويات",s4:"التحليل",lh:"موقع المزرعة وتحديد الحقل",lhint:"ابحث بالاسم أو اضغط على الخريطة لتثبيت الدبوس على مزرعتك.",loc:"البحث عن موقع",ph:"ابحث عن قرية أو مركز أو محافظة",crop:"المحصول الحالي",prio:"أولوياتك كمزارع",back:"رجوع",next:"التالي",
+ph2:"بنحلّل بيانات أرضك...",phint:"بنراجع بيانات الأقمار الصناعية والمناخ علشان نجهز لك توصيات مبنية على موقعك.",prog:"التقدم الإجمالي",ps:["تحديد موقع المزرعة والإحداثيات","جلب بيانات رطوبة التربة SMAP","تحليل الظروف المناخية NASA POWER","حساب مؤشر صحة المحصول","مطابقة الاستراتيجيات الزراعية"],
+dh:"تحليل مزرعتك",dhint:"نظرة شاملة على حالة أرضك والتوصيات المناسبة لها.",sl:["المحصول الحالي","الموقع المحدد","آخر تحديث"],health:"مؤشر صحة المزرعة",al:"تنبيهات مناخية مبكرة",a1t:"موجة حر متوقعة خلال 5 أيام",a1p:"الحرارة هتعدّي المعتاد. فكّر في الري بعد الغروب وتأجيل التسميد.",a2t:"رطوبة التربة منخفضة",a2p:"الطبقة السطحية أقل من المطلوب. زوّد الري تدريجيًا.",
+scn:"جرّب سيناريوهات مناخية مختلفة",scnp:"غيّر الحرارة والأمطار وشوف تأثيرها على الصحة.",tmp:"ارتفاع الحرارة",rain:"تغير الأمطار",trend:"اتجاه رطوبة التربة",sh:"قارن بين الاستراتيجيات الزراعية",cur:"الحالية (تقليدية)",rec:"موصى بها",alt:"بديلة",water:"استهلاك المياه",yield:"الإنتاجية المتوقعة",
+exp:"محتاج رأي متخصص؟",expp:"اطلع على تفاصيل الاستراتيجية الموصى بها قبل ما تقرر.",more:"تفاصيل الاستراتيجية",demo:"الأرقام تجريبية لعرض التصميم وهتتحدّث ببيانات ناسا الفعلية بعد الربط.",srcl:"مصادر البيانات:",again:"تحليل مزرعة أخرى",
+dth:"تفاصيل الاستراتيجية الموصى بها",dtp:"النتائج المتوقعة وأسباب التوصية.",dm:[["الإنتاجية","+28.5%"],["كفاءة المياه","+31.8%"],["استهلاك المياه","−22.4%"]],why:"ليه الاستراتيجية دي؟",dw:[["تجديد النيتروجين","البقوليات في الدورة بتعوّض نيتروجين التربة طبيعيًا."],["تقليل الأمراض","تغيير المحصول بيكسر دورة الآفات."],["مياه أقل","المحاصيل المتبادلة بتحتاج ري أقل في الفترات الحرجة."]],
+mh:"البيانات والمنهجية العلمية",mp:"إزاي بنحوّل بيانات ناسا لقرار مفهوم.",mod:"نموذج الدمج الموزون",modp:"مؤشر الصحة بيجمع ثلاث إشارات بأوزان توضيحية.",w1:"رطوبة التربة (SMAP)",w2:"الحرارة والمناخ (NASA POWER)",w3:"النبات NDVI (Landsat/Sentinel)",sr:"المصادر",sa:"صور أقمار صناعية لمؤشر الغطاء النباتي.",sb:"بيانات الطقس والإشعاع الشمسي اليومية.",sc:"رطوبة التربة السطحية من القمر SMAP.",lim:"حدود التحليل",limp:"البيانات بدقة مكانية محدودة، فالتوصيات إرشادية ولا تغني عن الخبير الزراعي.",
+fdesc:"منصة تحوّل بيانات ناسا إلى قرارات زراعية مفهومة.",fl:"روابط سريعة",fs:"مصادر الرصد",team:"تطوير فريق ___",
+st:["إجهاد شديد","إجهاد متوسط","حالة جيدة"],pr:{water:"توفير المياه",yield:"زيادة الإنتاج",cost:"تقليل التكلفة",soil:"صحة التربة"},cr:{potato:"بطاطس",wheat:"قمح",tomato:"طماطم",corn:"ذرة",bean:"فول",clover:"برسيم"},co:"إحداثيات",up:"اليوم"},
+en:{n1:"Home",n2:"How it works",n3:"Data sources",n4:"Data & methodology",cta2:"Start analysis",badge:"NASA data: SMAP, GPM and NASA POWER",h1:"Know your land. Farm with confidence.",sub:"Field Shift turns NASA climate, soil and rainfall data into simple decisions that protect your crop and save water.",cta:"Start analyzing your farm",cta3:"Start analyzing your farm",
+fh:"Smarter farming decisions",fhint:"Start with clearer data",hh:"How it works",hhint:"Three simple steps from your location to your decision",end:"Start understanding your land better",
+f:[["Trusted NASA data","Satellite readings for heat, rain and soil moisture, straight from the source."],["Save water","Know when to irrigate and how much your land really needs."],["Pick the best crop cycle","Compare your current rotation with the one recommended for your land."]],
+h:[["Mark your land","Pick your farm on the map and enter your crop."],["Analyze its data","We gather satellite and climate data for your location."],["Discover the right recommendations","See crop health, early alerts and the best crop cycle."]],
+s1:"Location",s2:"Crop",s3:"Priorities",s4:"Analysis",lh:"Farm location and field",lhint:"Search by name or tap the map to drop the pin on your farm.",loc:"Search a location",ph:"Search a village, district or governorate",crop:"Current crop",prio:"Your priorities",back:"Back",next:"Next",
+ph2:"Analyzing your land data...",phint:"We’re reviewing satellite and climate data to prepare recommendations for your location.",prog:"Overall progress",ps:["Locating the farm and coordinates","Fetching SMAP soil moisture","Analyzing NASA POWER climate","Calculating crop health index","Matching crop strategies"],
+dh:"Your farm analysis",dhint:"An overview of your land and the recommendations for it.",sl:["Current crop","Selected location","Last updated"],health:"Farm health index",al:"Early climate alerts",a1t:"Heat wave expected within 5 days",a1p:"Temperatures will run above normal. Consider evening irrigation and delay fertilizing.",a2t:"Low soil moisture",a2p:"The surface layer is below what the crop needs. Increase irrigation gradually.",
+scn:"Try different climate scenarios",scnp:"Change heat and rainfall to see the effect on health.",tmp:"Temperature rise",rain:"Rainfall change",trend:"Soil moisture trend",sh:"Compare crop-cycle strategies",cur:"Current (traditional)",rec:"Recommended",alt:"Alternative",water:"Water use",yield:"Expected yield",
+exp:"Need an expert opinion?",expp:"Review the recommended strategy in detail before you decide.",more:"Strategy details",demo:"Figures are sample data for the design and will use live NASA data once connected.",srcl:"Data sources:",again:"Analyze another farm",
+dth:"Recommended strategy details",dtp:"Expected results and reasons for the recommendation.",dm:[["Yield","+28.5%"],["Water efficiency","+31.8%"],["Water use","−22.4%"]],why:"Why this strategy?",dw:[["Nitrogen renewal","Legumes in the rotation restore soil nitrogen naturally."],["Fewer diseases","Changing crops breaks the pest cycle."],["Less water","Alternating crops need less irrigation in critical periods."]],
+mh:"Data and scientific methodology",mp:"How we turn NASA data into a clear decision.",mod:"Weighted fusion model",modp:"The health index combines three signals with illustrative weights.",w1:"Soil moisture (SMAP)",w2:"Heat and climate (NASA POWER)",w3:"Vegetation NDVI (Landsat/Sentinel)",sr:"Sources",sa:"Satellite imagery for the vegetation index.",sb:"Daily weather and solar radiation data.",sc:"Surface soil moisture from the SMAP satellite.",lim:"Limits of the analysis",limp:"Data has limited spatial resolution, so recommendations are guidance and don’t replace an agronomist.",
+fdesc:"A platform that turns NASA data into clear farming decisions.",fl:"Quick links",fs:"Observation sources",team:"Built by ___",
+st:["Severe stress","Moderate stress","Good condition"],pr:{water:"Save water",yield:"Raise yield",cost:"Cut costs",soil:"Soil health"},cr:{potato:"Potato",wheat:"Wheat",tomato:"Tomato",corn:"Corn",bean:"Beans",clover:"Clover"},co:"Coordinates",up:"Today"}};
+var CR={potato:{s:78,r:["potato","bean","wheat"],a:["potato","wheat"]},wheat:{s:84,r:["wheat","clover","corn"],a:["wheat","corn"]},tomato:{s:71,r:["tomato","bean","wheat"],a:["tomato","corn"]}};
+var L="ar",pos={x:.4,y:.5},tm=null,$=function(i){return document.getElementById(i)},Q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var IC=['<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>','<path d="M12 3s6 6 6 11a6 6 0 01-12 0c0-5 6-11 6-11z"/>','<path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19c3-4 6-7 9-9"/>'];
+function ic(n){return '<div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+IC[n]+'</svg></div>'}
+var c="";for(var r=0;r<3;r++)for(var k=0;k<5;k++){var cx=90+k*150+(r%2)*40,cy=70+r*110;c+='<circle cx="'+cx+'" cy="'+cy+'" r="52" fill="'+["#C9A94B","#9BBF5E","#D9B65C","#7FAE4F"][(r+k)%4]+'"/><circle cx="'+cx+'" cy="'+cy+'" r="30" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>'}$("circ").innerHTML=c;
+function card(i,a){return '<div class="card">'+i+'<h3>'+a[0]+'</h3><p>'+a[1]+'</p></div>'}
+function fill(){var t=T[L];document.documentElement.lang=L;document.documentElement.dir=L=="ar"?"rtl":"ltr";$("lang").textContent=L=="ar"?"EN":"عربي";
+Q("[data-i]").forEach(function(e){var v=t[e.dataset.i];if(typeof v=="string")e.textContent=v});Q("[data-ip]").forEach(function(e){e.placeholder=t[e.dataset.ip]});
+$("feats").innerHTML=t.f.map(function(a,i){return card(ic(i),a)}).join("");
+$("how").innerHTML=t.h.map(function(a,i){return '<div class="card"><span class="n">'+(i+1)+'</span><div><h3>'+a[0]+'</h3><p>'+a[1]+'</p></div></div>'}).join("");
+var sel=$("crop").value||"potato";$("crop").innerHTML=Object.keys(CR).map(function(k){return '<option value="'+k+'">'+t.cr[k]+'</option>'}).join("");$("crop").value=sel;
+var ch=Q("#prios input").map(function(i){return i.checked});$("prios").innerHTML=Object.keys(t.pr).map(function(k,i){return '<label><input type="checkbox" value="'+k+'"'+(ch[i]||(!ch.length&&i==0)?" checked":"")+'>'+t.pr[k]+'</label>'}).join("");
+$("dmet").innerHTML=t.dm.map(function(a){return '<div class="card"><p>'+a[0]+'</p><div class="big'+(a[1].charAt(0)=="−"?" neg":"")+'">'+a[1]+'</div></div>'}).join("");
+$("whys").innerHTML=t.dw.map(function(a,i){return card(ic(i),a)}).join("");coord();dash()}
+function coord(){$("coord").textContent=T[L].co+": "+(30.9-pos.y*.6).toFixed(4)+"°N, "+(31.2+pos.x*.6).toFixed(4)+"°E"}
+function pin(){$("pin").style.left=pos.x*100+"%";$("pin").style.top=pos.y*100+"%"}
+$("map").addEventListener("click",function(e){var b=this.getBoundingClientRect();pos={x:(e.clientX-b.left)/b.width,y:(e.clientY-b.top)/b.height};pin();coord()});
+$("q").addEventListener("keydown",function(e){if(e.key=="Enter"&&this.value.trim()){var h=0;for(var i=0;i<this.value.length;i++)h=(h*31+this.value.charCodeAt(i))%1000;pos={x:.15+(h%70)/100,y:.2+(h%55)/100};pin();coord()}});
+function dash(){var t=T[L],k=$("crop").value,d=CR[k],tv=+$("tr").value,rv=+$("rr").value;
+var s=Math.max(20,Math.min(98,Math.round(d.s-tv*3+rv*.2))),i=s>=80?2:s>=60?1:0,col=i==2?"var(--g)":"var(--am)";
+$("tv").textContent="+"+tv+"°C";$("rv").textContent=(rv>0?"+":"")+rv+"%";
+$("arc").setAttribute("stroke-dasharray",(2*Math.PI*82*s/100)+" 600");$("arc").style.stroke=col;$("pct").textContent=s+"%";$("pct").style.fill=col;$("stat").textContent=t.st[i];
+var cp=t.cr[k];$("sum").innerHTML=[[t.sl[0],cp],[t.sl[1],(30.9-pos.y*.6).toFixed(2)+"°N, "+(31.2+pos.x*.6).toFixed(2)+"°E"],[t.sl[2],t.up]].map(function(a){return '<div class="card"><small>'+a[0]+'</small><b>'+a[1]+'</b></div>'}).join("");
+function p(a){return a.map(function(x){return t.cr[x]}).join(L=="ar"?" ← ":" → ")}
+$("strats").innerHTML=[[t.cur,p([k,k]),"+0%","—",""],[t.rec,p(d.r),"−22%","+18%","rec"],[t.alt,p(d.a),"−12%","+9%",""]].map(function(x){return '<div class="card '+x[4]+'"><span class="tag">'+x[0]+'</span><div class="path">'+x[1]+'</div><div class="m"><span>'+t.water+'</span><b>'+x[2]+'</b></div><div class="m"><span>'+t.yield+'</span><b>'+x[3]+'</b></div></div>'}).join("")}
+function run(){var t=T[L],v=0;$("pl").innerHTML=t.ps.map(function(x){return '<div class="card"><span>'+x+'</span><span></span></div>'}).join("");var rows=Q("#pl .card");clearInterval(tm);
+tm=setInterval(function(){v+=4;if(v>100)v=100;$("pbar").style.width=v+"%";$("pp").textContent=v+"%";var a=Math.floor(v/20.1);rows.forEach(function(r,j){r.className="card"+(j<a?" d":j==a?" r":"");r.lastChild.textContent=j<a?"✓":j==a?"…":""});
+if(v>=100){clearInterval(tm);setTimeout(function(){if(cur=="proc")go("dashboard")},400)}},200)}
+var cur="home";function show(h){if(!/^(home|form|proc|dashboard|detail|data)$/.test(h))h="home";cur=h;clearInterval(tm);
+Q(".view").forEach(function(v){v.classList.toggle("on",v.id==h)});Q(".stp span").forEach(function(s,i){s.classList.toggle("on",i<=(h=="form"?0:3))});if(h=="dashboard")dash();if(h=="proc")run();window.scrollTo(0,0)}
+$("go").onclick=function(){go("proc")};
+$("lang").onclick=function(){L=L=="ar"?"en":"ar";fill();if(cur=="proc")run()};
+$("tr").oninput=$("rr").oninput=dash;$("crop").onchange=dash;
+function go(h){try{history.replaceState(null,"","#"+h)}catch(e){}show(h)}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a){e.preventDefault();go(a.getAttribute("href").slice(1))}});
+window.addEventListener("hashchange",function(){show((location.hash||"#home").slice(1))});fill();show((location.hash||"#home").slice(1));
+</script>
+</body>
+</html>
