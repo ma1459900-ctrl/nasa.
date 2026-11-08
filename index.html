@@ -146,17 +146,17 @@ footer h4{margin:0 0 10px;font-size:15px}footer a{display:block;color:#C9DCC9;te
 <div class="sum" id="sum"></div>
 <div class="dash">
 <div class="card gauge"><h3 data-i="health"></h3>
-<svg viewBox="0 0 200 200" role="img" aria-label="health"><circle cx="100" cy="100" r="82" fill="none" stroke="var(--ln)" stroke-width="18"/><circle id="arc" cx="100" cy="100" r="82" fill="none" stroke="var(--g)" stroke-width="18" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="0 600"/><text x="100" y="114" text-anchor="middle" id="pct" font-size="44" font-weight="700" fill="currentColor">0%</text></svg><p id="stat"></p><p class="note" id="idxn" style="display:none"></p></div>
+<svg viewBox="0 0 200 200" role="img" aria-label="health"><circle cx="100" cy="100" r="82" fill="none" stroke="var(--ln)" stroke-width="18"/><circle id="arc" cx="100" cy="100" r="82" fill="none" stroke="var(--g)" stroke-width="18" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="0 600"/><text x="100" y="114" text-anchor="middle" id="pct" font-size="44" font-weight="700" fill="currentColor">0%</text></svg><p id="stat"></p></div>
 <div><h3 style="margin-bottom:12px" data-i="al"></h3><div id="alerts"></div></div></div>
 <div class="grid" style="margin-top:16px">
 <div class="card"><h3 data-i="scn"></h3><p data-i="scnp"></p>
 <div class="sl"><span data-i="tmp"></span><b id="tv">+0°C</b></div><input type="range" id="tr" min="0" max="5" step="1" value="0" aria-label="temp">
-<div class="sl"><span data-i="rain"></span><b id="rv">0%</b></div><input type="range" id="rr" min="-30" max="30" step="10" value="0" aria-label="rain"></div>
-<div class="card"><h3 data-i="trend"></h3><svg viewBox="0 0 300 120" width="100%" role="img" aria-label="trend"><path d="M0 70C40 20 80 20 120 60S200 110 240 50 290 40 300 60" fill="none" stroke="var(--bl)" stroke-width="3"/><path d="M0 70C40 20 80 20 120 60S200 110 240 50 290 40 300 60V120H0z" fill="var(--blb)" opacity=".6"/></svg></div></div>
+<div class="sl"><span data-i="rain"></span><b id="rv">0%</b></div><input type="range" id="rr" min="-30" max="30" step="10" value="0" aria-label="rain"><div id="simr"></div></div>
+<div class="card"><h3 data-i="trend"></h3><div id="trend"></div></div>
+<div class="card" id="cmp"></div></div>
 <h2 class="l" data-i="sh"></h2><div class="grid" id="strats"></div>
 <div class="help card"><div><h3 data-i="exp"></h3><p data-i="expp"></p></div><div class="acts" style="margin:0"><a class="btn gr" href="#detail" data-i="more"></a></div></div>
-<p class="note" data-i="demo"></p>
-<div class="src"><span data-i="srcl"></span><b>SMAP</b><b>GPM</b><b>NASA POWER</b></div>
+<div class="src"><span data-i="srcl"></span><b>NASA POWER</b><b>MODIS NDVI</b></div>
 <div class="acts"><a class="btn gh" href="#form" data-i="again"></a></div>
 </section>
 
@@ -172,7 +172,7 @@ footer h4{margin:0 0 10px;font-size:15px}footer a{display:block;color:#C9DCC9;te
 <div class="card"><h3 data-i="mod"></h3><p data-i="modp"></p>
 <div class="m"><span data-i="w1"></span><b>40%</b></div><div class="m"><span data-i="w2"></span><b>30%</b></div><div class="m"><span data-i="w3"></span><b>30%</b></div></div>
 <h2 class="l" data-i="sr"></h2>
-<div class="grid"><div class="card"><h3>Landsat &amp; Sentinel</h3><p data-i="sa"></p></div><div class="card"><h3>NASA POWER</h3><p data-i="sb"></p></div><div class="card"><h3>NASA SMAP</h3><p data-i="sc"></p></div></div>
+<div class="grid"><div class="card"><h3>MODIS NDVI (NASA GIBS)</h3><p data-i="sa"></p></div><div class="card"><h3>NASA POWER</h3><p data-i="sb"></p></div></div>
 <div class="alert y" style="margin-top:20px"><h3 data-i="lim"></h3><p data-i="limp"></p></div>
 <div class="acts"><a class="btn" href="#form" data-i="cta"></a></div>
 </section>
@@ -181,7 +181,7 @@ footer h4{margin:0 0 10px;font-size:15px}footer a{display:block;color:#C9DCC9;te
 <footer><div class="fin">
 <div><b style="font-size:20px">Field Shift</b><p data-i="fdesc"></p></div>
 <div><h4 data-i="fl"></h4><a href="#home" data-i="n1"></a><a href="#form" data-i="cta2"></a><a href="#data" data-i="n3"></a></div>
-<div><h4 data-i="fs"></h4><a>NASA Earth Science Data</a><a>SMAP L3 Soil Moisture</a><a>NASA POWER</a></div></div>
+<div><h4 data-i="fs"></h4><a>NASA Earth Science Data</a><a>NASA GIBS · MODIS NDVI</a><a>NASA POWER</a></div></div>
 <div class="team"><i>LOGO</i><span data-i="team"></span></div>
 <div class="mq" aria-hidden="true"><span>Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • Field Shift • </span></div></footer>
 
@@ -189,36 +189,36 @@ footer h4{margin:0 0 10px;font-size:15px}footer a{display:block;color:#C9DCC9;te
 <script>
 
 
-var T={ar:{n1:"الرئيسية",n2:"كيف تعمل المنصة",n3:"مصادر البيانات",n4:"البيانات والمنهجية",cta2:"ابدأ التحليل الآن",badge:"بيانات ناسا ‏SMAP و‏GPM و‏NASA POWER",h1:"افهم أرضك.. وخد قرارك الزراعي بثقة",sub:"Field Shift بتحوّل بيانات ناسا عن المناخ والتربة والأمطار لقرارات بسيطة تحمي محصولك وتوفر مياهك.",cta:"ابدأ تحليل مزرعتك الآن",cta3:"ابدأ تحليل مزرعتك الآن",
+var T={ar:{n1:"الرئيسية",n2:"كيف تعمل المنصة",n3:"مصادر البيانات",n4:"البيانات والمنهجية",cta2:"ابدأ التحليل الآن",badge:"بيانات ناسا ‏NASA POWER و‏MODIS NDVI",h1:"افهم أرضك.. وخد قرارك الزراعي بثقة",sub:"Field Shift بتحوّل بيانات ناسا عن المناخ والتربة والأمطار لقرارات بسيطة تحمي محصولك وتوفر مياهك.",cta:"ابدأ تحليل مزرعتك الآن",cta3:"ابدأ تحليل مزرعتك الآن",
 fh:"قرارات زراعية أذكى",fhint:"ابدأ بيانات أوضح",hh:"كيف تعمل المنصة",hhint:"ثلاث خطوات بسيطة من موقعك لقرارك",end:"ابدأ فهم أرضك بشكل أفضل",
 f:[["بيانات موثوقة من ناسا","قراءات الأقمار الصناعية للحرارة والأمطار ورطوبة التربة من مصادرها الأصلية."],["توفير المياه","اعرف متى تروي وكم تحتاج الأرض فعلًا بدل الري بالتخمين."],["اختيار أفضل دورة زراعية","قارن دورتك الحالية بالدورة الموصى بها حسب أرضك ومناخك."]],
 h:[["حدد أرضك","اختار موقع مزرعتك على الخريطة وأدخل نوع المحصول."],["حلل بياناتها","بنجمع بيانات الأقمار الصناعية والمناخ لموقعك."],["اكتشف التوصيات المناسبة","هتشوف حالة المحصول وتنبيهات مبكرة وأفضل دورة زراعية."]],
 s1:"الموقع",s2:"المحصول",s3:"الأولويات",s4:"التحليل",lh:"موقع المزرعة وتحديد الحقل",lhint:"ابحث بالاسم أو اضغط على الخريطة لتثبيت الدبوس على مزرعتك.",loc:"البحث عن موقع",ph:"ابحث عن قرية أو مركز أو محافظة",crop:"المحصول الحالي",prio:"أولوياتك كمزارع",back:"رجوع",next:"التالي",
-ph2:"بنحلّل بيانات أرضك...",phint:"بنراجع بيانات الأقمار الصناعية والمناخ علشان نجهز لك توصيات مبنية على موقعك.",prog:"التقدم الإجمالي",ps:["تحديد موقع المزرعة والإحداثيات","جلب بيانات رطوبة التربة SMAP","تحليل الظروف المناخية NASA POWER","حساب مؤشر صحة المحصول","مطابقة الاستراتيجيات الزراعية"],
+ph2:"بنحلّل بيانات أرضك...",phint:"بنراجع بيانات الأقمار الصناعية والمناخ علشان نجهز لك توصيات مبنية على موقعك.",prog:"التقدم الإجمالي",ps:["تحديد موقع المزرعة والإحداثيات","جلب بيانات رطوبة التربة","تحليل الظروف المناخية NASA POWER","حساب مؤشر صحة المحصول","مطابقة الاستراتيجيات الزراعية"],
 dh:"تحليل مزرعتك",dhint:"نظرة شاملة على حالة أرضك والتوصيات المناسبة لها.",sl:["المحصول الحالي","الموقع المحدد","آخر تحديث"],health:"مؤشر صحة المزرعة",al:"تنبيهات مناخية مبكرة",a1t:"موجة حر متوقعة خلال 5 أيام",a1p:"الحرارة هتعدّي المعتاد. فكّر في الري بعد الغروب وتأجيل التسميد.",a2t:"رطوبة التربة منخفضة",a2p:"الطبقة السطحية أقل من المطلوب. زوّد الري تدريجيًا.",
 scn:"جرّب سيناريوهات مناخية مختلفة",scnp:"غيّر الحرارة والأمطار وشوف تأثيرها على الصحة.",tmp:"ارتفاع الحرارة",rain:"تغير الأمطار",trend:"اتجاه رطوبة التربة",sh:"قارن بين الاستراتيجيات الزراعية",cur:"الحالية (تقليدية)",rec:"موصى بها",alt:"بديلة",water:"استهلاك المياه",yield:"الإنتاجية المتوقعة",
-exp:"محتاج رأي متخصص؟",expp:"اطلع على تفاصيل الاستراتيجية الموصى بها قبل ما تقرر.",more:"تفاصيل الاستراتيجية",demo:"الأرقام تجريبية لعرض التصميم وهتتحدّث ببيانات ناسا الفعلية بعد الربط.",srcl:"مصادر البيانات:",again:"تحليل مزرعة أخرى",
+exp:"محتاج رأي متخصص؟",expp:"اطلع على تفاصيل الاستراتيجية الموصى بها قبل ما تقرر.",more:"تفاصيل الاستراتيجية",srcl:"مصادر البيانات:",again:"تحليل مزرعة أخرى",
 dth:"تفاصيل الاستراتيجية الموصى بها",dtp:"النتائج المتوقعة وأسباب التوصية.",dm:[["الإنتاجية","+28.5%"],["كفاءة المياه","+31.8%"],["استهلاك المياه","−22.4%"]],why:"ليه الاستراتيجية دي؟",dw:[["تجديد النيتروجين","البقوليات في الدورة بتعوّض نيتروجين التربة طبيعيًا."],["تقليل الأمراض","تغيير المحصول بيكسر دورة الآفات."],["مياه أقل","المحاصيل المتبادلة بتحتاج ري أقل في الفترات الحرجة."]],
-mh:"البيانات والمنهجية العلمية",mp:"إزاي بنحوّل بيانات ناسا لقرار مفهوم.",mod:"نموذج الدمج الموزون",modp:"مؤشر الصحة بيجمع ثلاث إشارات بأوزان توضيحية.",w1:"رطوبة التربة (SMAP)",w2:"الحرارة والمناخ (NASA POWER)",w3:"النبات NDVI (Landsat/Sentinel)",sr:"المصادر",sa:"صور أقمار صناعية لمؤشر الغطاء النباتي.",sb:"بيانات الطقس والإشعاع الشمسي اليومية.",sc:"رطوبة التربة السطحية من القمر SMAP.",lim:"حدود التحليل",limp:"البيانات بدقة مكانية محدودة، فالتوصيات إرشادية ولا تغني عن الخبير الزراعي.",
+mh:"البيانات والمنهجية العلمية",mp:"إزاي بنحوّل بيانات ناسا لقرار مفهوم.",mod:"نموذج الدمج الموزون",modp:"مؤشر الصحة بيجمع الإشارات دي بأوزان توضيحية. رطوبة التربة والحرارة شغّالين دلوقتي، وNDVI هيتضاف لاحقًا.",w1:"رطوبة التربة (NASA POWER)",w2:"الحرارة والمناخ (NASA POWER)",w3:"النبات NDVI (MODIS) ـ قريبًا",sr:"المصادر",sa:"صور أقمار صناعية لمؤشر الغطاء النباتي.",sb:"بيانات الطقس والإشعاع الشمسي اليومية.",lim:"حدود التحليل",limp:"البيانات بدقة مكانية محدودة، فالتوصيات إرشادية ولا تغني عن الخبير الزراعي.",
 fdesc:"منصة تحوّل بيانات ناسا إلى قرارات زراعية مفهومة.",fl:"روابط سريعة",fs:"مصادر الرصد",team:"تطوير فريق ___",
 st:["إجهاد شديد","إجهاد متوسط","حالة جيدة"],pr:{water:"توفير المياه",yield:"زيادة الإنتاج",cost:"تقليل التكلفة",soil:"صحة التربة"},cr:{potato:"بطاطس",wheat:"قمح",tomato:"طماطم",corn:"ذرة",bean:"فول",clover:"برسيم"},co:"إحداثيات",up:"اليوم",
 chp:"NASA GIBS · MODIS NDVI",l1:"الأراضي الزراعية",l2:"حدود الحقول",l3:"أسماء الأماكن",lg:"كثافة النبات",lg1:"كثيف",lg2:"تربة جرداء",fz:"قرّب أكتر لعرض حدود الحقول",fg:"جاري تحميل الحقول...",fr:"تعذّر تحميل الحقول الآن",f0:"مفيش حقول مسجّلة هنا في OpenStreetMap",fk:"حقل مسجّل",sg:"جاري البحث...",sn:"مش لاقي المكان ده. اضغط على الخريطة لتحديد مزرعتك.",
-nt:"بيانات ناسا لموقعك (آخر 30 يوم)",nT:"متوسط الحرارة",nR:"إجمالي المطر",nS:"رطوبة منطقة الجذور",nl:"جاري جلب بيانات ناسا...",ne:"مقدرتش أجيب بيانات ناسا دلوقتي، جرّب تاني.",nn:"المصدر NASA POWER: بيانات منمذجة بدقة مكانية بالكيلومترات، مؤشر استرشادي مش قياس من الحقل.",hotT:"حرارة مرتفعة في آخر 30 يوم",hotP:"{n} يوم عدّت فيهم الحرارة العظمى 35°م، ومتوسط الحرارة {t}°م. فكّر في الري بعد الغروب وتأجيل التسميد.",heatOkT:"الحرارة في المعدل المقبول",heatOkP:"متوسط الحرارة في آخر 30 يوم {t}°م.",soilLowT:"رطوبة منطقة الجذور منخفضة",soilLowP:"مؤشر الرطوبة {s}%، أقل من الحد المريح. زوّد الري تدريجيًا وراقب النبات.",soilMidT:"رطوبة منطقة الجذور متوسطة",soilMidP:"مؤشر الرطوبة {s}%. تابع الري ومتزودش المياه من غير حاجة.",soilOkT:"رطوبة منطقة الجذور جيدة",soilOkP:"مؤشر الرطوبة {s}%.",rainT:"مطر قليل جدًا",rainP:"إجمالي المطر {r} مم في آخر 30 يوم، فالري هو مصدر المياه الأساسي.",noLocT:"اختار موقع مزرعتك الأول",noLocP:"ارجع لصفحة الموقع وحدد مزرعتك على الخريطة عشان تظهر تنبيهات من بيانات ناسا.",demo2:"مؤشر الصحة والتنبيهات محسوبين من بيانات NASA POWER لموقعك. باقي الأرقام (المقارنة والتفاصيل) تجريبية.",idxn:"المؤشر محسوب من رطوبة التربة (٤٠٪) والحرارة (٣٠٪) فقط، وNDVI لسه مش داخل فيه. الحدود المستخدمة استرشادية."},
-en:{n1:"Home",n2:"How it works",n3:"Data sources",n4:"Data & methodology",cta2:"Start analysis",badge:"NASA data: SMAP, GPM and NASA POWER",h1:"Know your land. Farm with confidence.",sub:"Field Shift turns NASA climate, soil and rainfall data into simple decisions that protect your crop and save water.",cta:"Start analyzing your farm",cta3:"Start analyzing your farm",
+nt:"بيانات ناسا لموقعك (آخر 30 يوم)",nT:"متوسط الحرارة",nR:"إجمالي المطر",nS:"رطوبة منطقة الجذور",nl:"جاري جلب بيانات ناسا...",ne:"مقدرتش أجيب بيانات ناسا دلوقتي، جرّب تاني.",hotT:"حرارة مرتفعة في آخر 30 يوم",hotP:"{n} يوم عدّت فيهم الحرارة العظمى 35°م، ومتوسط الحرارة {t}°م. فكّر في الري بعد الغروب وتأجيل التسميد.",heatOkT:"الحرارة في المعدل المقبول",heatOkP:"متوسط الحرارة في آخر 30 يوم {t}°م.",soilLowT:"رطوبة منطقة الجذور منخفضة",soilLowP:"مؤشر الرطوبة {s}%، أقل من الحد المريح. زوّد الري تدريجيًا وراقب النبات.",soilMidT:"رطوبة منطقة الجذور متوسطة",soilMidP:"مؤشر الرطوبة {s}%. تابع الري ومتزودش المياه من غير حاجة.",soilOkT:"رطوبة منطقة الجذور جيدة",soilOkP:"مؤشر الرطوبة {s}%.",rainT:"مطر قليل جدًا",rainP:"إجمالي المطر {r} مم في آخر 30 يوم، فالري هو مصدر المياه الأساسي.",noLocT:"اختار موقع مزرعتك الأول",noLocP:"ارجع لصفحة الموقع وحدد مزرعتك على الخريطة عشان تظهر تنبيهات من بيانات ناسا.",cmpT:"مقارنة بالمعتاد",cmpU:"المعتاد",cmpNo:"مفيش بيانات سنين سابقة كفاية للمقارنة دلوقتي.",cmpN:"المعتاد = متوسط نفس الفترة في آخر {n} سنين من NASA POWER.",trN:"رطوبة منطقة الجذور آخر 30 يوم",trU:"الخط المتقطع = المعتاد",simH:"أيام عدّت 35°م",simWas:"بدل",simN:"المحاكاة بتطبّق الزيادة على أرقام موقعك الفعلية. تأثير المطر على رطوبة التربة مش محسوب لأنه محتاج نموذج، فمؤشر الصحة بيتأثر بالحرارة بس.",aboveT:"الحرارة أعلى من المعتاد",aboveP:"متوسط الحرارة {t}°م، أعلى من المعتاد ({u}°م) بـ {d}°م."},
+en:{n1:"Home",n2:"How it works",n3:"Data sources",n4:"Data & methodology",cta2:"Start analysis",badge:"NASA data: NASA POWER and MODIS NDVI",h1:"Know your land. Farm with confidence.",sub:"Field Shift turns NASA climate, soil and rainfall data into simple decisions that protect your crop and save water.",cta:"Start analyzing your farm",cta3:"Start analyzing your farm",
 fh:"Smarter farming decisions",fhint:"Start with clearer data",hh:"How it works",hhint:"Three simple steps from your location to your decision",end:"Start understanding your land better",
 f:[["Trusted NASA data","Satellite readings for heat, rain and soil moisture, straight from the source."],["Save water","Know when to irrigate and how much your land really needs."],["Pick the best crop cycle","Compare your current rotation with the one recommended for your land."]],
 h:[["Mark your land","Pick your farm on the map and enter your crop."],["Analyze its data","We gather satellite and climate data for your location."],["Discover the right recommendations","See crop health, early alerts and the best crop cycle."]],
 s1:"Location",s2:"Crop",s3:"Priorities",s4:"Analysis",lh:"Farm location and field",lhint:"Search by name or tap the map to drop the pin on your farm.",loc:"Search a location",ph:"Search a village, district or governorate",crop:"Current crop",prio:"Your priorities",back:"Back",next:"Next",
-ph2:"Analyzing your land data...",phint:"We’re reviewing satellite and climate data to prepare recommendations for your location.",prog:"Overall progress",ps:["Locating the farm and coordinates","Fetching SMAP soil moisture","Analyzing NASA POWER climate","Calculating crop health index","Matching crop strategies"],
+ph2:"Analyzing your land data...",phint:"We’re reviewing satellite and climate data to prepare recommendations for your location.",prog:"Overall progress",ps:["Locating the farm and coordinates","Fetching soil moisture data","Analyzing NASA POWER climate","Calculating crop health index","Matching crop strategies"],
 dh:"Your farm analysis",dhint:"An overview of your land and the recommendations for it.",sl:["Current crop","Selected location","Last updated"],health:"Farm health index",al:"Early climate alerts",a1t:"Heat wave expected within 5 days",a1p:"Temperatures will run above normal. Consider evening irrigation and delay fertilizing.",a2t:"Low soil moisture",a2p:"The surface layer is below what the crop needs. Increase irrigation gradually.",
 scn:"Try different climate scenarios",scnp:"Change heat and rainfall to see the effect on health.",tmp:"Temperature rise",rain:"Rainfall change",trend:"Soil moisture trend",sh:"Compare crop-cycle strategies",cur:"Current (traditional)",rec:"Recommended",alt:"Alternative",water:"Water use",yield:"Expected yield",
-exp:"Need an expert opinion?",expp:"Review the recommended strategy in detail before you decide.",more:"Strategy details",demo:"Figures are sample data for the design and will use live NASA data once connected.",srcl:"Data sources:",again:"Analyze another farm",
+exp:"Need an expert opinion?",expp:"Review the recommended strategy in detail before you decide.",more:"Strategy details",srcl:"Data sources:",again:"Analyze another farm",
 dth:"Recommended strategy details",dtp:"Expected results and reasons for the recommendation.",dm:[["Yield","+28.5%"],["Water efficiency","+31.8%"],["Water use","−22.4%"]],why:"Why this strategy?",dw:[["Nitrogen renewal","Legumes in the rotation restore soil nitrogen naturally."],["Fewer diseases","Changing crops breaks the pest cycle."],["Less water","Alternating crops need less irrigation in critical periods."]],
-mh:"Data and scientific methodology",mp:"How we turn NASA data into a clear decision.",mod:"Weighted fusion model",modp:"The health index combines three signals with illustrative weights.",w1:"Soil moisture (SMAP)",w2:"Heat and climate (NASA POWER)",w3:"Vegetation NDVI (Landsat/Sentinel)",sr:"Sources",sa:"Satellite imagery for the vegetation index.",sb:"Daily weather and solar radiation data.",sc:"Surface soil moisture from the SMAP satellite.",lim:"Limits of the analysis",limp:"Data has limited spatial resolution, so recommendations are guidance and don’t replace an agronomist.",
+mh:"Data and scientific methodology",mp:"How we turn NASA data into a clear decision.",mod:"Weighted fusion model",modp:"The health index combines these signals with illustrative weights. Soil moisture and heat are live now; NDVI will be added later.",w1:"Soil moisture (NASA POWER)",w2:"Heat and climate (NASA POWER)",w3:"Vegetation NDVI (MODIS), coming soon",sr:"Sources",sa:"Satellite imagery for the vegetation index.",sb:"Daily weather and solar radiation data.",lim:"Limits of the analysis",limp:"Data has limited spatial resolution, so recommendations are guidance and don’t replace an agronomist.",
 fdesc:"A platform that turns NASA data into clear farming decisions.",fl:"Quick links",fs:"Observation sources",team:"Built by ___",
 st:["Severe stress","Moderate stress","Good condition"],pr:{water:"Save water",yield:"Raise yield",cost:"Cut costs",soil:"Soil health"},cr:{potato:"Potato",wheat:"Wheat",tomato:"Tomato",corn:"Corn",bean:"Beans",clover:"Clover"},co:"Coordinates",up:"Today",
 chp:"NASA GIBS · MODIS NDVI",l1:"Farmland",l2:"Field boundaries",l3:"Place names",lg:"Vegetation density",lg1:"Dense",lg2:"Bare soil",fz:"Zoom in to see field boundaries",fg:"Loading fields...",fr:"Couldn’t load fields right now",f0:"No fields mapped here in OpenStreetMap",fk:"mapped fields",sg:"Searching...",sn:"Place not found. Tap the map to mark your farm.",
-nt:"NASA data for your location (last 30 days)",nT:"Average temperature",nR:"Total rainfall",nS:"Root-zone wetness",nl:"Fetching NASA data...",ne:"Couldn’t fetch NASA data right now. Try again.",nn:"Source: NASA POWER. Modeled data at kilometer-scale resolution; a guide, not a field measurement.",hotT:"High heat in the last 30 days",hotP:"{n} days with a daily high above 35°C; average temperature {t}°C. Consider evening irrigation and delay fertilizing.",heatOkT:"Temperature within an acceptable range",heatOkP:"Average temperature over the last 30 days: {t}°C.",soilLowT:"Low root-zone moisture",soilLowP:"Wetness index {s}%, below the comfortable level. Increase irrigation gradually and watch the crop.",soilMidT:"Moderate root-zone moisture",soilMidP:"Wetness index {s}%. Keep an eye on irrigation and avoid over-watering.",soilOkT:"Good root-zone moisture",soilOkP:"Wetness index {s}%.",rainT:"Very little rain",rainP:"Total rainfall of {r} mm in the last 30 days, so irrigation is the main water source.",noLocT:"Pick your farm location first",noLocP:"Go back to the location step and mark your farm on the map to see alerts from NASA data.",demo2:"Health index and alerts are computed from NASA POWER data for your location. The other figures (comparison and details) are sample data.",idxn:"The index uses soil moisture (40%) and temperature (30%) only; NDVI is not included yet. Thresholds are indicative."}};
+nt:"NASA data for your location (last 30 days)",nT:"Average temperature",nR:"Total rainfall",nS:"Root-zone wetness",nl:"Fetching NASA data...",ne:"Couldn’t fetch NASA data right now. Try again.",hotT:"High heat in the last 30 days",hotP:"{n} days with a daily high above 35°C; average temperature {t}°C. Consider evening irrigation and delay fertilizing.",heatOkT:"Temperature within an acceptable range",heatOkP:"Average temperature over the last 30 days: {t}°C.",soilLowT:"Low root-zone moisture",soilLowP:"Wetness index {s}%, below the comfortable level. Increase irrigation gradually and watch the crop.",soilMidT:"Moderate root-zone moisture",soilMidP:"Wetness index {s}%. Keep an eye on irrigation and avoid over-watering.",soilOkT:"Good root-zone moisture",soilOkP:"Wetness index {s}%.",rainT:"Very little rain",rainP:"Total rainfall of {r} mm in the last 30 days, so irrigation is the main water source.",noLocT:"Pick your farm location first",noLocP:"Go back to the location step and mark your farm on the map to see alerts from NASA data.",cmpT:"Compared with normal",cmpU:"normal",cmpNo:"Not enough past-year data to compare right now.",cmpN:"Normal = average of the same period over the last {n} years from NASA POWER.",trN:"Root-zone moisture, last 30 days",trU:"dashed line = normal",simH:"Days above 35°C",simWas:"was",simN:"The simulation applies the change to your location’s actual figures. The effect of rain on soil moisture is not modeled (it needs a model), so the health index responds to temperature only.",aboveT:"Temperature above normal",aboveP:"Average temperature {t}°C, which is {d}°C above normal ({u}°C)."}};
 var CR={potato:{s:78,r:["potato","bean","wheat"],a:["potato","wheat"]},wheat:{s:84,r:["wheat","clover","corn"],a:["wheat","corn"]},tomato:{s:71,r:["tomato","bean","wheat"],a:["tomato","corn"]}};
 var LG="ar",fd=null,tm=null,$=function(i){return document.getElementById(i)},Q=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
 var IC=['<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>','<path d="M12 3s6 6 6 11a6 6 0 01-12 0c0-5 6-11 6-11z"/>','<path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19c3-4 6-7 9-9"/>'];
@@ -235,8 +235,9 @@ $("whys").innerHTML=t.dw.map(function(a,i){return card(ic(i),a)}).join("");coord
 function coord(){$("coord").textContent=fd?T[LG].co+": "+fd.lat.toFixed(4)+"°N, "+fd.lng.toFixed(4)+"°E":""}
 function al(c,tt,p){return '<div class="alert '+c+'"><small>NASA POWER</small><h3>'+tt+'</h3>'+(p?'<p>'+p+'</p>':'')+'</div>'}
 
-function idx(){if(!fd||fd.st!="ok"||fd.soil==null||fd.temp==null)return null;
-var so=Math.max(0,Math.min(1,fd.soil/.6))*100,he=Math.max(0,Math.min(1,(40-fd.temp)/12))*100;
+function idx(tp,sl){if(!fd||fd.st!="ok"||fd.soil==null||fd.temp==null)return null;
+if(tp==null)tp=fd.temp;if(sl==null)sl=fd.soil;
+var so=Math.max(0,Math.min(1,sl/.6))*100,he=Math.max(0,Math.min(1,(40-tp)/12))*100;
 return Math.round((so*.4+he*.3)/.7)}
 function alerts(){var t=T[LG],b=$("alerts"),h="";
 if(!fd){b.innerHTML=al("b",t.noLocT,t.noLocP);return}
@@ -245,17 +246,40 @@ if(fd.st!="ok"||fd.soil==null||fd.temp==null){b.innerHTML=al("b",t.ne,"");return
 var f=function(x,o){return x.replace(/\{(\w)\}/g,function(_,k){return o[k]})};
 if(fd.hot>=3||fd.temp>=35)h+=al("y",t.hotT,f(t.hotP,{n:fd.hot,t:fd.temp.toFixed(1)}));
 else h+=al("b",t.heatOkT,f(t.heatOkP,{t:fd.temp.toFixed(1)}));
+if(fd.usual&&fd.temp-fd.usual.temp>=2)h+=al("y",t.aboveT,f(t.aboveP,{t:fd.temp.toFixed(1),u:fd.usual.temp.toFixed(1),d:(fd.temp-fd.usual.temp).toFixed(1)}));
 var sp=Math.round(fd.soil*100);
 if(fd.soil<.3)h+=al("y",t.soilLowT,f(t.soilLowP,{s:sp}));
 else if(fd.soil<.5)h+=al("b",t.soilMidT,f(t.soilMidP,{s:sp}));
 else h+=al("b",t.soilOkT,f(t.soilOkP,{s:sp}));
 if(fd.rain!=null&&fd.rain<5)h+=al("b",t.rainT,f(t.rainP,{r:fd.rain.toFixed(1)}));
 b.innerHTML=h}
+function trend(){var t=T[LG],b=$("trend");
+if(!fd||fd.st!="ok"||!fd.days){b.innerHTML='<p class="note">'+t.noLocT+'</p>';return}
+var pts=fd.days.filter(function(d){return d.soil!=null});
+if(pts.length<2){b.innerHTML="";return}
+var v=pts.map(function(d){return d.soil*100}),us=fd.usual?fd.usual.soil*100:null;
+var all=us==null?v:v.concat([us]),mn=Math.max(0,Math.floor(Math.min.apply(null,all))-5),mx=Math.min(100,Math.ceil(Math.max.apply(null,all))+5);
+if(mx-mn<10)mx=mn+10;
+var X=function(i){return 8+i/(v.length-1)*284},Y=function(x){return 100-(x-mn)/(mx-mn)*88};
+var line="M"+v.map(function(x,i){return X(i).toFixed(1)+" "+Y(x).toFixed(1)}).join("L"),area=line+"L"+X(v.length-1).toFixed(1)+" 100L8 100Z";
+var dt=function(k){return k.slice(4,6)+"/"+k.slice(6,8)};
+b.innerHTML='<svg viewBox="0 0 300 128" width="100%" role="img" aria-label="trend" style="direction:ltr"><path d="'+area+'" fill="var(--blb)" opacity=".6"/>'+(us==null?"":'<line x1="8" x2="292" y1="'+Y(us).toFixed(1)+'" y2="'+Y(us).toFixed(1)+'" stroke="var(--mu)" stroke-width="1.5" stroke-dasharray="4 4"/>')+'<path d="'+line+'" fill="none" stroke="var(--bl)" stroke-width="2.5"/><text x="8" y="9" font-size="10" fill="currentColor">'+Math.round(mx)+'%</text><text x="8" y="98" font-size="10" fill="currentColor">'+Math.round(mn)+'%</text><text x="8" y="120" font-size="10" fill="currentColor">'+dt(pts[0].k)+'</text><text x="292" y="120" font-size="10" text-anchor="end" fill="currentColor">'+dt(pts[pts.length-1].k)+'</text></svg><p class="note">'+t.trN+(us==null?"":" · "+t.trU)+'</p>'}
+function cmp(){var t=T[LG],b=$("cmp"),h='<h3>'+t.cmpT+'</h3>';
+if(!fd||fd.st!="ok"){b.innerHTML=h+'<p class="note">'+t.noLocT+'</p>';return}
+if(!fd.usual){b.innerHTML=h+'<p class="note">'+t.cmpNo+'</p>';return}
+var u=fd.usual,sg=function(x,d){return(x>=0?"+":"")+x.toFixed(d)};
+var row=function(lb,c,us,d,un,m){c=c*m;us=us*m;return'<div class="m"><span>'+lb+' ('+t.cmpU+' '+us.toFixed(d)+un+')</span><b>'+c.toFixed(d)+un+' ('+sg(c-us,d)+')</b></div>'};
+b.innerHTML=h+row(t.nT,fd.temp,u.temp,1,"°C",1)+row(t.nR,fd.rain,u.rain,1," mm",1)+row(t.nS,fd.soil,u.soil,0,"%",100)+'<p class="note">'+t.cmpN.replace("{n}",u.n)+'</p>'}
+function sim(){var t=T[LG],b=$("simr"),tv=+$("tr").value,rv=+$("rr").value;
+if(!fd||fd.st!="ok"||!fd.days){b.innerHTML="";return}
+var hot=function(x){return fd.days.filter(function(d){return d.tx!=null&&d.tx+x>=35}).length};
+var rain=fd.rain==null?null:fd.rain*(1+rv/100);
+b.innerHTML='<div class="m"><span>'+t.simH+'</span><b>'+hot(tv)+' ('+t.simWas+' '+hot(0)+')</b></div>'+(rain==null?"":'<div class="m"><span>'+t.nR+'</span><b>'+rain.toFixed(1)+' mm ('+t.simWas+' '+fd.rain.toFixed(1)+')</b></div>')+'<p class="note">'+t.simN+'</p>'}
 function dash(){var t=T[LG],k=$("crop").value,d=CR[k],tv=+$("tr").value,rv=+$("rr").value;
-var base=idx(),real=base!=null;
-var s=Math.max(5,Math.min(98,Math.round((real?base:d.s)-tv*3+rv*.2))),i=s>=80?2:s>=60?1:0,col=i==2?"var(--g)":"var(--am)";
+var real=idx()!=null;
+var s=Math.max(5,Math.min(98,real?idx(fd.temp+tv,fd.soil):Math.round(d.s-tv*3+rv*.2))),i=s>=80?2:s>=60?1:0,col=i==2?"var(--g)":"var(--am)";
 $("tv").textContent="+"+tv+"°C";$("rv").textContent=(rv>0?"+":"")+rv+"%";
-$("arc").setAttribute("stroke-dasharray",(2*Math.PI*82*s/100)+" 600");$("arc").style.stroke=col;$("pct").textContent=s+"%";$("pct").style.fill=col;$("stat").textContent=t.st[i];alerts();$("idxn").style.display=real?"block":"none";$("idxn").textContent=t.idxn;var dn=document.querySelector("[data-i=demo]");if(dn)dn.textContent=real?t.demo2:t.demo;
+$("arc").setAttribute("stroke-dasharray",(2*Math.PI*82*s/100)+" 600");$("arc").style.stroke=col;$("pct").textContent=s+"%";$("pct").style.fill=col;$("stat").textContent=t.st[i];alerts();trend();cmp();sim();
 var cp=t.cr[k],loc=fd?fd.lat.toFixed(2)+"°N, "+fd.lng.toFixed(2)+"°E":"—";$("sum").innerHTML=[[t.sl[0],cp],[t.sl[1],loc],[t.sl[2],t.up]].map(function(a){return '<div class="card"><small>'+a[0]+'</small><b>'+a[1]+'</b></div>'}).join("");
 function p(a){return a.map(function(x){return t.cr[x]}).join(LG=="ar"?" ← ":" → ")}
 $("strats").innerHTML=[[t.cur,p([k,k]),"+0%","—",""],[t.rec,p(d.r),"−22%","+18%","rec"],[t.alt,p(d.a),"−12%","+9%",""]].map(function(x){return '<div class="card '+x[4]+'"><span class="tag">'+x[0]+'</span><div class="path">'+x[1]+'</div><div class="m"><span>'+t.water+'</span><b>'+x[2]+'</b></div><div class="m"><span>'+t.yield+'</span><b>'+x[3]+'</b></div></div>'}).join("")}
@@ -316,20 +340,37 @@ function pick(lat,lng){fd=window.fieldData={lat:lat,lng:lng,st:"load",temp:null,
 var fmtD=function(d){return d.toISOString().slice(0,10).replace(/-/g,"")};
 async function nasa(lat,lng,id){
 var end=new Date();end.setDate(end.getDate()-3);var st=new Date(end);st.setDate(st.getDate()-29);
-var u="https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2M_MAX,PRECTOTCORR,GWETROOT&community=AG&format=JSON&latitude="+lat.toFixed(4)+"&longitude="+lng.toFixed(4)+"&start="+fmtD(st)+"&end="+fmtD(end);
-try{var j=await(await fetch(u)).json();var p=j.properties.parameter;
-var cl=function(o){return Object.values(o).filter(function(v){return v!==-999})};
-var sum=function(a){return a.reduce(function(s,x){return s+x},0)};
-var av=function(a){return a.length?sum(a)/a.length:null};
-if(id!==req)return;fd.temp=av(cl(p.T2M));var rr=cl(p.PRECTOTCORR);fd.rain=rr.length?sum(rr):null;fd.soil=av(cl(p.GWETROOT));fd.hot=p.T2M_MAX?cl(p.T2M_MAX).filter(function(v){return v>=35}).length:0;fd.st="ok"}
-catch(e){if(id!==req)return;fd.st="err"}
+var sh=function(d,y){var x=new Date(d);x.setFullYear(x.getFullYear()-y);return fmtD(x)};
+var base="https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2M_MAX,PRECTOTCORR,GWETROOT&community=AG&format=JSON&latitude="+lat.toFixed(4)+"&longitude="+lng.toFixed(4);
+var p=null;
+try{var r1=await fetch(base+"&start="+sh(st,5)+"&end="+fmtD(end));if(r1.ok)p=(await r1.json()).properties.parameter}catch(e){}
+if(!p){try{var r2=await fetch(base+"&start="+fmtD(st)+"&end="+fmtD(end));p=(await r2.json()).properties.parameter}catch(e){}}
+if(id!==req)return;
+if(!p||!p.T2M){fd.st="err";renderNasa();return}
+try{
+var ks=Object.keys(p.T2M).sort();
+var ok=function(v){return v!=null&&v!==-999};
+var S=function(a){return a.reduce(function(s,x){return s+x},0)};
+var stats=function(a,b){var w=ks.filter(function(k){return k>=a&&k<=b});
+var vals=function(o){return o?w.map(function(k){return o[k]}).filter(ok):[]};
+var T1=vals(p.T2M),R=vals(p.PRECTOTCORR),G=vals(p.GWETROOT);
+return{n:w.length,temp:T1.length?S(T1)/T1.length:null,rain:R.length?S(R):null,soil:G.length?S(G)/G.length:null}};
+var cu=stats(fmtD(st),fmtD(end));
+fd.temp=cu.temp;fd.rain=cu.rain;fd.soil=cu.soil;
+fd.days=ks.filter(function(k){return k>=fmtD(st)&&k<=fmtD(end)}).map(function(k){
+var g=p.GWETROOT?p.GWETROOT[k]:null,x=p.T2M_MAX?p.T2M_MAX[k]:null;return{k:k,soil:ok(g)?g:null,tx:ok(x)?x:null}});
+fd.hot=fd.days.filter(function(d){return d.tx!=null&&d.tx>=35}).length;
+var ys=[];for(var y=1;y<=5;y++){var q=stats(sh(st,y),sh(end,y));if(q.n>=25&&q.temp!=null&&q.rain!=null&&q.soil!=null)ys.push(q)}
+fd.usual=ys.length>=3?{n:ys.length,temp:S(ys.map(function(q){return q.temp}))/ys.length,rain:S(ys.map(function(q){return q.rain}))/ys.length,soil:S(ys.map(function(q){return q.soil}))/ys.length}:null;
+fd.st="ok"}
+catch(e){fd.st="err"}
 renderNasa()}
 function renderNasa(){var b=$("nasa");if(cur=="dashboard")dash();if(!fd){b.style.display="none";return}
 var t=T[LG];b.style.display="block";
 if(fd.st=="load"){b.textContent=t.nl;return}
 if(fd.st=="err"){b.textContent=t.ne;return}
 var f=function(v,d,u){return v==null?"—":v.toFixed(d)+u};
-b.innerHTML='<h3>'+t.nt+'</h3><div class="m"><span>'+t.nT+'</span><b>'+f(fd.temp,1,"°C")+'</b></div><div class="m"><span>'+t.nR+'</span><b>'+f(fd.rain,1," mm")+'</b></div><div class="m"><span>'+t.nS+'</span><b>'+(fd.soil==null?"—":(fd.soil*100).toFixed(0)+"%")+'</b></div><p class="note">'+t.nn+'</p>'}
+b.innerHTML='<h3>'+t.nt+'</h3><div class="m"><span>'+t.nT+'</span><b>'+f(fd.temp,1,"°C")+'</b></div><div class="m"><span>'+t.nR+'</span><b>'+f(fd.rain,1," mm")+'</b></div><div class="m"><span>'+t.nS+'</span><b>'+(fd.soil==null?"—":(fd.soil*100).toFixed(0)+"%")+'</b></div>'}
 
 
 async function viaLIQ(q){if(LIQ_TOKEN==="YOUR_TOKEN")return[];
